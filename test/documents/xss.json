@@ -1,0 +1,94 @@
+{
+    "content": [
+        [
+            "heading",
+            {
+                "value": "<script>alert('xss')</script>",
+                "level": -1e9999
+            }
+        ],
+        [
+            "heading",
+            {
+                "value": "<img src=fail onerror=alert('xss')>",
+                "level": 1e10
+            }
+        ],
+        [
+            "paragraph",
+            {
+                "content": [
+                    [
+                        "text",
+                        {
+                            "value": "<script>alert('xss')</script>",
+                            "marks": []
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": "<img src=fail onerror=alert('xss')>",
+                            "marks": []
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": "link",
+                            "marks": [
+                                [
+                                    "link",
+                                    {
+                                        "href": "javascript:alert('xss')",
+                                        "title": "\"><script>alert('xss')</script><a href=\"#\" title=\""
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                ]
+            }
+        ],
+        [
+            "image",
+            {
+                "src": "javascript:alert('xss')",
+                "caption": [],
+                "layout": 1e100
+            }
+        ],
+        [
+            "image",
+            {
+                "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAYAAABCHPt+AAAALUlEQVR42u3RAQ0AMAgAoBvk/UxqA/tYw02oQPzOeqwRQoQgRAhChCBECEJuG0aEFUuBQuskAAAAAElFTkSuQmCC",
+                "caption": [],
+                "layout": -99
+            }
+        ],
+        [
+            "image",
+            {
+                "src": "data:image/hax\" onerror=\"alert('xss')",
+                "caption": [],
+                "layout": 0
+            }
+        ],
+        [
+            "code_block",
+            {
+                "code": "code block\nmonospace content\ngoes here",
+                "lang": "\" onmouseover=\"javascript:alert('xss')"
+            }
+        ],
+        [
+            "linkref",
+            {
+                "to": {
+                    "author": "foo",
+                    "slug": "a\" onclick=\"javascript:alert('xss')"
+                }
+            }
+        ]
+    ]
+}

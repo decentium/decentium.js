@@ -1,0 +1,10 @@
+<h1>&lt;script&gt;alert('xss')&lt;/script&gt;</h1>
+<h4>&lt;img src=fail onerror=alert('xss')&gt;</h4>
+<p>&lt;script&gt;alert('xss')&lt;/script&gt;&lt;img src=fail onerror=alert('xss')&gt;<a href="" title="&quot;&gt;&lt;script&gt;alert('xss')&lt;/script&gt;&lt;a href=&quot;#&quot; title=&quot;">link</a></p>
+<figure><img src="" alt=""></figure>
+<figure><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAYAAABCHPt+AAAALUlEQVR42u3RAQ0AMAgAoBvk/UxqA/tYw02oQPzOeqwRQoQgRAhChCBECEJuG0aEFUuBQuskAAAAAElFTkSuQmCC" alt=""></figure>
+<figure><img src="data:image/hax&quot; onerror=&quot;alert('xss')" alt=""></figure>
+<pre><code data-lang="&quot; onmouseover=&quot;javascript:alert('xss')">code block
+monospace content
+goes here</code></pre>
+<p><a href="https://decentium.org/foo/a&quot; onclick=&quot;javascript:alert('xss')">https://decentium.org/foo/a" onclick="javascript:alert('xss')</a></p>

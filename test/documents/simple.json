@@ -1,0 +1,334 @@
+{
+    "content": [
+        [
+            "paragraph",
+            {
+                "content": []
+            }
+        ],
+        [
+            "heading",
+            {
+                "value": "Heading 1",
+                "level": 1
+            }
+        ],
+        [
+            "heading",
+            {
+                "value": "Heading 2",
+                "level": 1
+            }
+        ],
+        [
+            "paragraph",
+            {
+                "content": [
+                    [
+                        "text",
+                        {
+                            "value": "First paragraph",
+                            "marks": []
+                        }
+                    ]
+                ]
+            }
+        ],
+        [
+            "paragraph",
+            {
+                "content": [
+                    [
+                        "text",
+                        {
+                            "value": "Second paragraph text with marks, ",
+                            "marks": []
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": "bold",
+                            "marks": [
+                                [
+                                    "bold",
+                                    {}
+                                ]
+                            ]
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": ", ",
+                            "marks": []
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": "italic",
+                            "marks": [
+                                [
+                                    "italic",
+                                    {}
+                                ]
+                            ]
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": ", ",
+                            "marks": []
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": "bolditalic",
+                            "marks": [
+                                [
+                                    "bold",
+                                    {}
+                                ],
+                                [
+                                    "italic",
+                                    {}
+                                ]
+                            ]
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": ", ",
+                            "marks": []
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": "strikethrough",
+                            "marks": [
+                                [
+                                    "strike",
+                                    {}
+                                ]
+                            ]
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": ", ",
+                            "marks": []
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": "code",
+                            "marks": [
+                                [
+                                    "code",
+                                    {}
+                                ]
+                            ]
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": ", ",
+                            "marks": []
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": "link",
+                            "marks": [
+                                [
+                                    "link",
+                                    {
+                                        "href": "https://example.com",
+                                        "title": ""
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                ]
+            }
+        ],
+        [
+            "list",
+            {
+                "type": 0,
+                "items": [
+                    {
+                        "content": [
+                            [
+                                "text",
+                                {
+                                    "value": "bullet list",
+                                    "marks": []
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "content": [
+                            [
+                                "text",
+                                {
+                                    "value": "can also have ",
+                                    "marks": []
+                                }
+                            ],
+                            [
+                                "text",
+                                {
+                                    "value": "marks",
+                                    "marks": [
+                                        [
+                                            "bold",
+                                            {}
+                                        ],
+                                        [
+                                            "italic",
+                                            {}
+                                        ]
+                                    ]
+                                }
+                            ]
+                        ]
+                    }
+                ]
+            }
+        ],
+        [
+            "list",
+            {
+                "type": 1,
+                "items": [
+                    {
+                        "content": [
+                            [
+                                "text",
+                                {
+                                    "value": "ordered list",
+                                    "marks": []
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "content": [
+                            [
+                                "text",
+                                {
+                                    "value": "second item",
+                                    "marks": [
+                                        [
+                                            "code",
+                                            {}
+                                        ]
+                                    ]
+                                }
+                            ]
+                        ]
+                    }
+                ]
+            }
+        ],
+        [
+            "image",
+            {
+                "src": "https://i.imgur.com/KXRoqti.jpg",
+                "caption": [
+                    [
+                        "text",
+                        {
+                            "value": "Optional image caption, can have ",
+                            "marks": []
+                        }
+                    ],
+                    [
+                        "text",
+                        {
+                            "value": "marks",
+                            "marks": [
+                                [
+                                    "bold",
+                                    {}
+                                ],
+                                [
+                                    "italic",
+                                    {}
+                                ]
+                            ]
+                        }
+                    ]
+                ],
+                "layout": 1
+            }
+        ],
+        [
+            "code_block",
+            {
+                "code": "code block\nmonospace content\ngoes here",
+                "lang": "null"
+            }
+        ],
+        [
+            "code_block",
+            {
+                "code": "// code block with syntax highlighting\nfunction main() {\n   // ...\n}",
+                "lang": "javascript"
+            }
+        ],
+        [
+            "paragraph",
+            {
+                "content": [
+                    [
+                        "text",
+                        {
+                            "value": "Here comes a divider:",
+                            "marks": []
+                        }
+                    ]
+                ]
+            }
+        ],
+        [
+            "divider",
+            {}
+        ],
+        [
+            "paragraph",
+            {
+                "content": [
+                    [
+                        "text",
+                        {
+                            "value": "And finally a linkback to another article:",
+                            "marks": []
+                        }
+                    ]
+                ]
+            }
+        ],
+        [
+            "linkref",
+            {
+                "to": {
+                    "author": "foo",
+                    "slug": "this.is.bar"
+                }
+            }
+        ]
+    ]
+}
