@@ -8,7 +8,8 @@
   "types": "lib/index.d.ts",
   "files": [
     "README.md",
-    "lib"
+    "lib",
+    "contract"
   ],
   "dependencies": {
     "eosjs": "^20.0.0",

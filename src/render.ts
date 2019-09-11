@@ -1,5 +1,5 @@
 import {cssFilter, escapeAttrValue, escapeHtml, safeAttrValue as _safeAttrValue} from 'xss'
-import * as ABI from './decentium'
+import * as ABI from '../contract/types'
 
 interface RenderContext {
     numSections?: number

@@ -6,15 +6,16 @@ SRC_FILES := $(shell find src -name '*.ts')
 
 lib: $(SRC_FILES) node_modules tsconfig.json rollup.config.js
 	rollup -c &&\
-	cp src/decentium.d.ts lib/ &&\
 	touch lib
 
 node_modules:
 	yarn install --non-interactive --frozen-lockfile
 
-.PHONY: abi-types
-abi-types: node_modules
-	cleos -u https://eos.greymass.com get abi decentiumorg | eosio-abi2ts -e > src/decentium.d.ts
+.PHONY: update-contract
+update-contract: node_modules
+	cleos -u https://eos.greymass.com get abi decentiumorg |\
+	tee contract/abi.json |\
+	eosio-abi2ts -e > contract/types.d.ts
 
 .PHONY: lint
 lint: node_modules

@@ -99,7 +99,6 @@ describe('eosjs data provider', function() {
             ),
             /You shall not pass/,
         )
-        assert.equal((provider as any).txIndex.length, 0)
         BLOCK_RPC_FETCH = false
     })
 

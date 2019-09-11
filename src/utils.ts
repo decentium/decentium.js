@@ -1,5 +1,5 @@
 import {Serialize} from 'eosjs'
-import * as ABI from './decentium'
+import * as ABI from '../contract/types'
 
 /**
  * Sleep for N milliseconds.

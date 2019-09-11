@@ -3,7 +3,7 @@ import 'mocha'
 import * as assert from 'assert'
 import * as fs from 'fs'
 
-import * as ABI from '../src/decentium'
+import * as ABI from '../contract/types'
 import render, { renderBlock, renderInline } from '../src/render'
 
 const p = (content: ABI.VariantInlineNodes[]) =>
