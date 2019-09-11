@@ -11,14 +11,20 @@
     "lib"
   ],
   "dependencies": {
+    "eosjs": "^20.0.0",
+    "lru-cache": "^5.1.1",
     "xss": "^1.0.6"
   },
   "devDependencies": {
+    "@types/lru-cache": "^5.1.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.7.2",
+    "@types/node-fetch": "^2.5.0",
     "eosio-abi2ts": "^1.2.0",
     "mocha": "^6.2.0",
+    "node-fetch": "^2.6.0",
     "nyc": "^14.1.1",
+    "replay": "^2.4.0",
     "rollup": "^1.20.3",
     "rollup-plugin-typescript2": "^0.24.0",
     "ts-node": "^8.3.0",
