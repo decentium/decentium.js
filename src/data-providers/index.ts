@@ -33,6 +33,8 @@ export interface TableQuery {
     key_type?: any,
     index_position?: any,
     limit?: any,
+    encode_type?: any
+    reverse?: boolean
 }
 
 export interface TableResponse<T = any> {

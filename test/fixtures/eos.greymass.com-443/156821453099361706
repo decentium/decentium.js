@@ -1,0 +1,19 @@
+POST /v1/chain/get_table_rows
+content-type: text/plain;charset=UTF-8
+accept: */*
+accept-encoding: gzip,deflate
+body: {\"code\":\"decentiumorg\",\"scope\":\"almstdigital\",\"table\":\"posts\",\"limit\":1,\"key_type\":\"name\",\"index_position\":\"1\",\"upper_bound\":\"hello.world\",\"lower_bound\":\"hello.world\",\"json\":true}
+
+HTTP/1.1 200 OK
+server: nginx
+date: Wed, 11 Sep 2019 15:08:50 GMT
+content-type: application/json
+content-length: 357
+connection: close
+access-control-allow-origin: *
+access-control-allow-methods: GET, POST, OPTIONS
+access-control-allow-headers: X-Requested-With,Accept,Content-Type,Origin
+host: eos.greymass.com
+x-cached: MISS
+
+{"rows":[{"ref":{"permlink":{"author":"almstdigital","slug":"hello.world"},"timestamp":"2019-05-25T01:48:09","category":"decentium","options":3,"tx":{"block_num":59923115,"transaction_id":"0ef9aa310e6e7efb7b10192dc80e5b09826c4369be6b1ba54990b8a66302500e"},"edit_tx":null,"endorsements":{"count":0,"amount":0},"extensions":[]},"extensions":[]}],"more":false}
