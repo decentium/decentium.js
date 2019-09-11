@@ -32,6 +32,7 @@ export interface TableQuery {
     upper_bound?: any,
     key_type?: any,
     index_position?: any,
+    limit?: any,
 }
 
 export interface TableResponse<T = any> {

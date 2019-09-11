@@ -43,7 +43,11 @@ export class EosjsDataProvider implements DataProvider {
     }
 
     public getTableRows<T>(query: TableQuery): Promise<TableResponse<T>> {
-        throw new Error('Method not implemented.')
+        const req: any = {
+            ...query,
+            json: true,
+        }
+        return this.call('/v1/chain/get_table_rows', req)
     }
 
     public async getTransaction(txId: string, blockNum: number) {

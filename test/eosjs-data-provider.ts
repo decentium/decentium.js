@@ -3,6 +3,7 @@ import 'mocha'
 import * as assert from 'assert'
 import { JsonRpc } from 'eosjs'
 
+import * as ABI from '../contract/types'
 import { EosjsDataProvider } from '../src/data-providers/eosjs'
 
 const Replay = require('replay')
@@ -100,6 +101,22 @@ describe('eosjs data provider', function() {
             /You shall not pass/,
         )
         BLOCK_RPC_FETCH = false
+    })
+
+    it('should fetch tables', async function() {
+        const result = await provider.getTableRows<ABI.BlogRow>({
+            code: 'decentiumorg',
+            scope: 'decentiumorg',
+            table: 'blogs',
+            lower_bound: 'almstdigital',
+            upper_bound: 'almstdigital',
+            key_type: 'name',
+            index_position: '0',
+            limit: 1,
+        })
+        assert.equal(result.rows.length, 1)
+        assert.equal(result.more, false)
+        assert.equal(result.rows[0].author, 'almstdigital')
     })
 
 })
