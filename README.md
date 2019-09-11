@@ -1,8 +1,23 @@
 
-decentiumjs
-===========
+# decentiumjs [![Package Version](https://img.shields.io/npm/v/decentium.svg?style=flat-square)](https://www.npmjs.com/package/decentium)
 
 JavaScript library for interacting with the decentralized publishing platform [Decentium](https://decentium.org).
+
+
+Installing
+----------
+
+With Yarn:
+
+```
+yarn add decentium
+```
+
+With NPM:
+
+```
+npm install --save decentium
+```
 
 
 Example
