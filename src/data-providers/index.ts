@@ -26,15 +26,15 @@ export interface Block {
 
 export interface TableQuery {
     code: string
+    encode_type?: any
+    index_position?: any
+    key_type?: any
+    limit?: any
+    lower_bound?: any
+    reverse?: boolean
     scope: string
     table: string
-    lower_bound?: any,
-    upper_bound?: any,
-    key_type?: any,
-    index_position?: any,
-    limit?: any,
-    encode_type?: any
-    reverse?: boolean
+    upper_bound?: any
 }
 
 export interface TableResponse<T = any> {

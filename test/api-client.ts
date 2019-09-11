@@ -1,22 +1,22 @@
 import 'mocha'
 
 import * as assert from 'assert'
-import { JsonRpc } from 'eosjs'
+import {JsonRpc} from 'eosjs'
 
 import * as ABI from '../contract/types'
-import { ApiClient } from '../src/api-client'
-import { EosjsDataProvider } from '../src/data-providers/eosjs'
+import {ApiClient} from '../src/api-client'
+import {EosjsDataProvider} from '../src/data-providers/eosjs'
 
 const Replay = require('replay')
 Replay.fixtures = __dirname + '/fixtures'
 
-const rpc = new JsonRpc('https://eos.greymass.com', { fetch: require('node-fetch') })
+const rpc = new JsonRpc('https://eos.greymass.com', {fetch: require('node-fetch')})
 // TODO: use a mock provider
-const dataProvider = new EosjsDataProvider(rpc, { whitelist: ['decentiumorg'] })
-const client = new ApiClient({ dataProvider })
+const dataProvider = new EosjsDataProvider(rpc, {whitelist: ['decentiumorg']})
+const client = new ApiClient({dataProvider})
 
 const GenesisPostRef: any = {
-    permlink: { author: 'almstdigital', slug: 'hello.world' },
+    permlink: {author: 'almstdigital', slug: 'hello.world'},
     timestamp: '2019-05-25T01:48:09',
     category: 'decentium',
     options: 3,
@@ -25,7 +25,7 @@ const GenesisPostRef: any = {
         transaction_id: '0ef9aa310e6e7efb7b10192dc80e5b09826c4369be6b1ba54990b8a66302500e',
     },
     edit_tx: null,
-    endorsements: { count: 0, amount: 0 },
+    endorsements: {count: 0, amount: 0},
     extensions: [],
 }
 
@@ -71,6 +71,6 @@ describe('api client', function() {
         const decentium = await client.getTrending(99487, 'decentium', 1)
         assert.equal(decentium.posts.length, 1)
         assert.equal(decentium.posts[0].category, 'decentium')
-        assert.deepEqual(decentium.posts[0].permlink, { author: 'almstdigital', slug: 'hello.world' })
+        assert.deepEqual(decentium.posts[0].permlink, {author: 'almstdigital', slug: 'hello.world'})
     })
 })

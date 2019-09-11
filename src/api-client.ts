@@ -1,8 +1,6 @@
-import {JsonRpc, Serialize} from 'eosjs'
-
 import * as ABI from '../contract/types'
-import { DataProvider, TableQuery } from './data-providers'
-import {i64tohex, nametohex, sleep} from './utils'
+import {DataProvider, TableQuery} from './data-providers'
+import {i64tohex, nametohex} from './utils'
 
 interface ApiClientOptions {
     /** Data provider instance or URL to EOS node. */
@@ -12,7 +10,6 @@ interface ApiClientOptions {
 }
 
 export class ApiClient {
-
     public readonly dataProvider: DataProvider
     public readonly contractAccount: string
 
@@ -160,5 +157,4 @@ export class ApiClient {
     private async getTransaction(ref: ABI.TxRef) {
         return this.dataProvider.getTransaction(ref.transaction_id, ref.block_num)
     }
-
 }

@@ -38,9 +38,9 @@ export function renderInline(nodes: ABI.VariantInlineNodes[]) {
         if (firstMark[0] === 'link') {
             const link = firstMark[1] as ABI.Link
             if (open) {
-                let a = `<a href="${ safeAttrValue('a', 'href', link.href) }"`
+                let a = `<a href="${safeAttrValue('a', 'href', link.href)}"`
                 if (link.title.length > 0) {
-                    a += ` title="${ safeAttrValue('a', 'title', link.title) }"`
+                    a += ` title="${safeAttrValue('a', 'title', link.title)}"`
                 }
                 a += '>'
                 return a
@@ -69,7 +69,7 @@ export function renderInline(nodes: ABI.VariantInlineNodes[]) {
                         tag = 'del'
                         break
                     default:
-                        throw new Error(`Encountered unknown mark '${ mark }'`)
+                        throw new Error(`Encountered unknown mark '${mark}'`)
                 }
                 tags += open ? '<' : '</'
                 tags += tag + '>'
@@ -95,7 +95,7 @@ export function renderInline(nodes: ABI.VariantInlineNodes[]) {
                 rv.push('<br>')
                 break
             default:
-                throw new Error(`Encountered unknown inline node '${ type }'`)
+                throw new Error(`Encountered unknown inline node '${type}'`)
         }
     }
     return rv.join('')
@@ -110,7 +110,7 @@ export function renderBlock(node: ABI.VariantBlockNodes, ctx: RenderContext = {}
             if (paragraph.content.length === 0) {
                 return
             }
-            rv = `<p>${ renderInline(paragraph.content) }</p>`
+            rv = `<p>${renderInline(paragraph.content)}</p>`
             break
         case 'heading':
             const heading = data as ABI.Heading
@@ -122,7 +122,7 @@ export function renderBlock(node: ABI.VariantBlockNodes, ctx: RenderContext = {}
             if (ctx.numSections || (ctx.numImages || 0) > 1) {
                 level += 1
             }
-            rv = `<h${ level }>${ escapeHtml(heading.value) }</h${ level }>`
+            rv = `<h${level}>${escapeHtml(heading.value)}</h${level}>`
             break
         case 'divider':
             rv = '<hr>'
@@ -131,39 +131,45 @@ export function renderBlock(node: ABI.VariantBlockNodes, ctx: RenderContext = {}
             // TODO: use image info if provided to build placeholder and set image size
             const image = data as ABI.Image
             rv = '<figure>'
-            rv += `<img src="${ safeAttrValue('img', 'src', image.src) }" alt="">`
+            rv += `<img src="${safeAttrValue('img', 'src', image.src)}" alt="">`
             if (image.caption.length > 0) {
-                rv += `<figcaption>${ renderInline(image.caption) }</figcaption>`
+                rv += `<figcaption>${renderInline(image.caption)}</figcaption>`
             }
             rv += '</figure>'
             break
         case 'quote':
             const quote = data as ABI.Quote
-            rv = `<blockquote>${ renderInline(quote.content) }</blockquote>`
+            rv = `<blockquote>${renderInline(quote.content)}</blockquote>`
             break
         case 'linkref':
             // TODO: add inline post preview if provided in context
             // TODO: make base url configurable
             const linkref = data as ABI.Linkref
-            const href = 'https://decentium.org' + `/${ linkref.to.author }/${ linkref.to.slug.replace(/\./g, '-') }`
-            rv = `<p><a href="${ safeAttrValue('a', 'href', href) }">${ escapeHtml(href) }</a></p>`
+            const href =
+                'https://decentium.org' +
+                `/${linkref.to.author}/${linkref.to.slug.replace(/\./g, '-')}`
+            rv = `<p><a href="${safeAttrValue('a', 'href', href)}">${escapeHtml(href)}</a></p>`
             break
         case 'list':
             const list = data as ABI.List
             const tag = list.type === 0 ? 'ul' : 'ol'
-            rv = `<${ tag }>`
+            rv = `<${tag}>`
             for (const item of list.items) {
-                rv += `<li>${ renderInline(item.content) }</li>`
+                rv += `<li>${renderInline(item.content)}</li>`
             }
-            rv += `</${ tag }>`
+            rv += `</${tag}>`
             break
         case 'code_block':
             // TODO: syntax hl
             const codeBlock = data as ABI.CodeBlock
-            rv = `<pre><code data-lang="${ safeAttrValue('code', 'data-lang', codeBlock.lang) }">${ escapeHtml(codeBlock.code) }</code></pre>`
+            rv = `<pre><code data-lang="${safeAttrValue(
+                'code',
+                'data-lang',
+                codeBlock.lang
+            )}">${escapeHtml(codeBlock.code)}</code></pre>`
             break
         default:
-            throw new Error(`Encountered unknown block node '${ type }'`)
+            throw new Error(`Encountered unknown block node '${type}'`)
     }
     // keep track of text sections and images for determening if heading qualifies as title
     if (type === 'image') {

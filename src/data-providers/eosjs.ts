@@ -1,17 +1,16 @@
-import { JsonRpc, Serialize } from 'eosjs'
+import {JsonRpc, Serialize} from 'eosjs'
 import * as LRU from 'lru-cache'
-import { sleep } from '../utils'
-import { Action, Block, DataProvider, TableQuery, TableResponse, Transaction } from './index'
+import {sleep} from '../utils'
+import {Action, Block, DataProvider, TableQuery, TableResponse, Transaction} from './index'
 
 export interface EosjsDataProviderOptions {
     /** How many blocks to keep before starting to evict from the LRU cache. */
-    blockCacheSize?: number,
+    blockCacheSize?: number
     /** List of contracts, if provided only actions involving given contracts will be returned. */
     whitelist?: string[]
 }
 
 export class EosjsDataProvider implements DataProvider {
-
     public readonly blockCache: LRU<number, Block>
     private txIndex: Map<string, number>
 
@@ -24,7 +23,10 @@ export class EosjsDataProvider implements DataProvider {
      */
     private contracts = new Map<string, Serialize.Contract | null>()
 
-    constructor(public readonly rpc: JsonRpc, public readonly options: EosjsDataProviderOptions = {}) {
+    constructor(
+        public readonly rpc: JsonRpc,
+        public readonly options: EosjsDataProviderOptions = {}
+    ) {
         this.txIndex = new Map()
         this.blockCache = new LRU({
             max: options.blockCacheSize || 10000,
@@ -54,7 +56,7 @@ export class EosjsDataProvider implements DataProvider {
         if (this.txIndex.has(txId)) {
             blockNum = this.txIndex.get(txId)! // in case reference block num was updated during fetch
             const block = this.blockCache.get(blockNum)! // guaranteed hit if index has it
-            return block.transactions.find(({ id }) => id === txId)!
+            return block.transactions.find(({id}) => id === txId)!
         }
         const fetchTx = async (num: number) => {
             const block = await this.getBlock(num)
@@ -79,18 +81,16 @@ export class EosjsDataProvider implements DataProvider {
     }
 
     public async getBlock(blockNum: number) {
-        const rawBlock: any = await this.call(
-            '/v1/chain/get_block', { block_num_or_id: blockNum },
-        )
+        const rawBlock: any = await this.call('/v1/chain/get_block', {block_num_or_id: blockNum})
         const transactions: Transaction[] = []
         for (const {trx} of rawBlock.transactions) {
             if (typeof trx === 'string') {
-                transactions.push({ id: trx, actions: [] })
+                transactions.push({id: trx, actions: []})
                 continue
             }
             const actions: Action[] = []
             for (const rawAction of trx.transaction.actions) {
-                const { account, name, authorization, data } = rawAction
+                const {account, name, authorization, data} = rawAction
                 if (this.useWhitelist && !this.whitelist.has(account)) {
                     continue
                 }
@@ -98,10 +98,10 @@ export class EosjsDataProvider implements DataProvider {
                     account,
                     name,
                     authorization,
-                    data: typeof data === 'string' ? (await this.resolveData(rawAction)) : data,
+                    data: typeof data === 'string' ? await this.resolveData(rawAction) : data,
                 })
             }
-            transactions.push({ id: trx.id, actions })
+            transactions.push({id: trx.id, actions})
             this.txIndex.set(trx.id, blockNum)
         }
         const block: Block = {
@@ -160,8 +160,8 @@ export class EosjsDataProvider implements DataProvider {
 function getContract(contractAbi: any): Serialize.Contract {
     const types = Serialize.getTypesFromAbi(Serialize.createInitialTypes(), contractAbi)
     const actions = new Map<string, Serialize.Type>()
-    for (const { name, type } of contractAbi.actions) {
+    for (const {name, type} of contractAbi.actions) {
         actions.set(name, Serialize.getType(types, type))
     }
-    return { types, actions }
+    return {types, actions}
 }
