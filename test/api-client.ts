@@ -68,7 +68,7 @@ describe('api client', function() {
         assert.equal(all.posts.length, 20)
         assert.equal(typeof all.next, 'number')
         // TODO: this will start failing when feeds are pruned and http fixtures are renewed
-        const decentium = await client.getTrending(99487, 'decentium', 1)
+        const decentium = await client.getTrending({from: 99487, category: 'decentium', limit: 1})
         assert.equal(decentium.posts.length, 1)
         assert.equal(decentium.posts[0].category, 'decentium')
         assert.deepEqual(decentium.posts[0].permlink, {author: 'almstdigital', slug: 'hello.world'})

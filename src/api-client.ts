@@ -80,23 +80,24 @@ export class ApiClient {
     }
 
     /** Fetch trending feed. */
-    public async getTrending(from?: number, category?: string, limit = 20) {
+    public async getTrending(opts: {from?: number, category?: string, limit?: number} = {}) {
+        const limit = opts.limit || 20
         const req: TableQuery = {
             code: this.contractAccount,
             scope: this.contractAccount,
             table: 'trending',
             limit: limit + 1,
-            key_type: category ? 'i128' : 'i64',
-            index_position: category ? '3' : '2',
+            key_type: opts.category ? 'i128' : 'i64',
+            index_position: opts.category ? '3' : '2',
             encode_type: 'hex', // ignored for i64..
             reverse: true,
         }
-        if (from && isFinite(from)) {
+        if (opts.from && isFinite(opts.from)) {
             req.lower_bound = 0
-            req.upper_bound = from
+            req.upper_bound = opts.from
         }
-        if (category) {
-            const categoryhex = nametohex(category)
+        if (opts.category) {
+            const categoryhex = nametohex(opts.category)
             const upperhex = req.upper_bound ? i64tohex(req.upper_bound) : 'ffffffffffffffff'
             req.lower_bound = '0x0000000000000000' + categoryhex
             req.upper_bound = '0x' + upperhex + categoryhex
