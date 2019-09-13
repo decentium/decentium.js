@@ -1,0 +1,19 @@
+POST /v1/chain/get_info
+content-type: text/plain;charset=UTF-8
+accept: */*
+accept-encoding: gzip,deflate
+body: {}
+
+HTTP/1.1 200 OK
+server: nginx
+date: Fri, 13 Sep 2019 12:35:09 GMT
+content-type: application/json
+content-length: 607
+connection: close
+access-control-allow-origin: *
+access-control-allow-methods: GET, POST, OPTIONS
+access-control-allow-headers: X-Requested-With,Accept,Content-Type,Origin
+host: eos.greymass.com
+x-cached: HIT
+
+{"server_version":"a24c5c81","chain_id":"aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906","head_block_num":79154940,"last_irreversible_block_num":79154610,"last_irreversible_block_id":"04b7cdb22ca090f9fa6b4b143b5a49929fdda6d75414b59327382c7c42ac83a1","head_block_id":"04b7cefc1d261311662502f20be42027bffacb9fc81c6374696107ae0db9b950","head_block_time":"2019-09-13T12:35:08.500","head_block_producer":"starteosiobp","virtual_block_cpu_limit":200000000,"virtual_block_net_limit":1048576000,"block_cpu_limit":200000,"block_net_limit":1048576,"server_version_string":"greymass-v1.7.4-hl-dirty"}

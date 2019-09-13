@@ -13,7 +13,8 @@ export interface EosjsDataProviderOptions {
 export class EosjsDataProvider implements DataProvider {
     public readonly blockCache: LRU<number, Block>
     private txIndex: Map<string, number>
-
+    private lastIrreversible = 0
+    private lastIrreversibleUpdate = 0
     private useWhitelist = false
     private whitelist = new Set<string>()
 
@@ -102,13 +103,23 @@ export class EosjsDataProvider implements DataProvider {
                 })
             }
             transactions.push({id: trx.id, actions})
-            this.txIndex.set(trx.id, blockNum)
         }
         const block: Block = {
             block_num: blockNum,
             transactions,
         }
-        this.blockCache.set(blockNum, block)
+        const now = Date.now()
+        if (now - this.lastIrreversibleUpdate > 60000) {
+            const info = await this.rpc.get_info()
+            this.lastIrreversible = info.last_irreversible_block_num
+            this.lastIrreversibleUpdate = now
+        }
+        if (this.lastIrreversible >= block.block_num) {
+            this.blockCache.set(blockNum, block)
+            for (const {id} of block.transactions) {
+                this.txIndex.set(id, blockNum)
+            }
+        }
         return block
     }
 
