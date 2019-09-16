@@ -8,7 +8,7 @@ lib: $(SRC_FILES) node_modules tsconfig.json rollup.config.js
 	rollup -c &&\
 	touch lib
 
-node_modules:
+node_modules: yarn.lock
 	yarn install --non-interactive --frozen-lockfile
 
 .PHONY: update-contract

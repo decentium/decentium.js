@@ -1,11 +1,14 @@
 {
     "name": "decentium",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "JavaScript library for interacting with Decentium",
     "license": "MIT",
     "main": "lib/index.js",
     "module": "lib/index.esm.js",
     "types": "lib/index.d.ts",
+    "scripts": {
+      "prepack": "make lib"
+    },
     "files": [
         "README.md",
         "lib",
