@@ -66,7 +66,7 @@ export class EosjsDataProvider implements DataProvider {
         let tx = await fetchTx(blockNum)
         // lookaround if tx is not fund in given block
         if (!tx) {
-            const numbers = [1, -1, 2, -2].map((i) => blockNum + i)
+            const numbers = [1, 2, 3, 4, 5, 6, -1, -2].map((i) => blockNum + i)
             for (const num of numbers) {
                 tx = await fetchTx(num)
                 if (tx) {
