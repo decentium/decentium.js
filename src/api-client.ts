@@ -139,8 +139,8 @@ export class ApiClient {
     /** Resolve a Decentium post. */
     public async resolvePost(ref: ABI.PostRef) {
         const tx = await this.getTransaction(ref.edit_tx || ref.tx)
-        const action = tx.actions[0]
-        if (action.account !== this.contractAccount || action.name !== 'post') {
+        const action = tx.actions.find((a) => a.account === this.contractAccount && a.name === 'post')
+        if (!action) {
             throw new Error('Post ref points to invalid tx')
         }
         return action.data as ABI.ActionPost
@@ -148,8 +148,8 @@ export class ApiClient {
 
     public async resolveProfile(ref: ABI.TxRef) {
         const tx = await this.getTransaction(ref)
-        const action = tx.actions[0]
-        if (action.account !== this.contractAccount || action.name !== 'profile') {
+        const action = tx.actions.find((a) => a.account === this.contractAccount && a.name === 'profile')
+        if (!action) {
             throw new Error('Profile ref points to invalid tx')
         }
         return action.data as ABI.ActionProfile
